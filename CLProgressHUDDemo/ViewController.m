@@ -30,9 +30,13 @@
 - (IBAction)buttonClicked:(id)sender {
     CLProgressHUD *hud = [[CLProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:hud];
-    hud.text = @"Loading...";
-    hud.shape = CLProgressHUDShapeCircle;
+    hud.text = @"加载中...";
+    
+   // hud.shape = CLProgressHUDShapeCircle;
+    hud.shape = CLProgressHUDShapeLinear;
+
     hud.type = CLProgressHUDTypeDarkForground;
+    //hud.type =  CLProgressHUDTypeDarkBackground;
     [hud showWithAnimation:YES duration:3.0];
 }
 

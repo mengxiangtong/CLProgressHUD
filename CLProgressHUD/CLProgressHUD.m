@@ -80,9 +80,10 @@ float Degrees2Radians(float degrees) { return degrees * M_PI / 180; }
         hudWidth = 210.0;
         hudHeight = 90.0;
     }
-    self.hudView.frame = CGRectMake((CGRectGetWidth(self.bounds)-hudWidth)*0.5, (CGRectGetHeight(self.bounds)-hudHeight)*0.5, hudWidth, hudHeight);
+    self.hudView.frame = CGRectMake((CGRectGetWidth(self.bounds)-hudWidth)*0.5, (CGRectGetHeight(self.bounds)-hudHeight)*0.5 , hudWidth, hudHeight);
+    
     if (_shape == CLProgressHUDShapeLinear) {
-        self.stringLabel.frame = CGRectMake(xMargin, 20, CGRectGetWidth(_hudView.bounds)-xMargin*2, 16);
+        self.stringLabel.frame = CGRectMake(xMargin, 50, CGRectGetWidth(_hudView.bounds)-xMargin*2, 16);
     } else {
         self.stringLabel.frame = CGRectMake(xMargin, CGRectGetHeight(_hudView.bounds)-20, CGRectGetWidth(_hudView.bounds)-xMargin*2, 16);
     }
@@ -111,9 +112,9 @@ float Degrees2Radians(float degrees) { return degrees * M_PI / 180; }
         CGFloat x = (CGRectGetWidth(_hudView.bounds)-_diameter*(_ringsColor.count*2-1))*0.5;
         CGFloat y;
         if ([_stringLabel.text isEqualToString:@""]) {
-            y = CGRectGetHeight(_hudView.bounds)*0.5;
+            y = CGRectGetHeight(_hudView.bounds)*0.5 -25;
         } else {
-            y = CGRectGetHeight(_hudView.bounds)*0.5+_diameter;
+            y = CGRectGetHeight(_hudView.bounds)*0.5+_diameter -25;
         }
         CGPoint lastPoint = CGPointMake(x, y);
         for (UIColor *color in colors) {
