@@ -71,37 +71,57 @@ float Degrees2Radians(float degrees) { return degrees * M_PI / 180; }
 }
 
 - (void)layout {
+    
     CGFloat hudWidth;
     CGFloat hudHeight;
+    
+    
+   
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        hudWidth = 200.0;
-        hudHeight = 80.0;
+        //iphone
+        if (_shape == CLProgressHUDShapeLinear) {
+            hudWidth = 200.0;
+            hudHeight = 80.0;
+        }else{
+            hudWidth = 150.0;
+            hudHeight = 150.0;
+        }
+       
     } else {
         hudWidth = 210.0;
         hudHeight = 90.0;
     }
+    
+    
+    //self.stringLabel.backgroundColor = [UIColor yellowColor];
+    if (_shape == CLProgressHUDShapeLinear) {
+        self.stringLabel.frame = CGRectMake(xMargin, 50, CGRectGetWidth(_hudView.bounds)-xMargin*2, 18);
+    } else {
+        self.stringLabel.frame = CGRectMake(xMargin, CGRectGetHeight(_hudView.bounds)-30, CGRectGetWidth(_hudView.bounds)-xMargin*2 , 18);
+    }
+    
+    
+    
     self.hudView.frame = CGRectMake((CGRectGetWidth(self.bounds)-hudWidth)*0.5, (CGRectGetHeight(self.bounds)-hudHeight)*0.5 , hudWidth, hudHeight);
+    
     self.hudView.layer.masksToBounds = YES;
     self.hudView.layer.cornerRadius = 4;
     
-    
-    if (_shape == CLProgressHUDShapeLinear) {
-        self.stringLabel.frame = CGRectMake(xMargin, 50, CGRectGetWidth(_hudView.bounds)-xMargin*2, 16);
-    } else {
-        self.stringLabel.frame = CGRectMake(xMargin, CGRectGetHeight(_hudView.bounds)-20, CGRectGetWidth(_hudView.bounds)-xMargin*2, 16);
-    }
+ 
 }
 
 #pragma mark - init Method
 - (void)initSubviews {
+    
     UIView *hudView = [[UIView alloc] initWithFrame:CGRectZero];
     _hudView = hudView;
     _hudView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
+   // _hudView.backgroundColor = [UIColor yellowColor];
     [self addSubview:_hudView];
     
     UILabel *stringLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     stringLabel.backgroundColor = [UIColor clearColor];
-    stringLabel.font = [UIFont systemFontOfSize:16.0f];
+    stringLabel.font = [UIFont systemFontOfSize:15.0f];
     stringLabel.textColor = [UIColor whiteColor];
     stringLabel.textAlignment = NSTextAlignmentCenter;
     self.stringLabel = stringLabel;
@@ -241,7 +261,9 @@ float Degrees2Radians(float degrees) { return degrees * M_PI / 180; }
 - (void)showWithAnimation:(BOOL)animated {
     [self layout];
     _animationIndex = 0;
+    
     self.shapeLayers = [self createColorShapes:_ringsColor ofShape:_shape];
+    
     for (CAShapeLayer *layer in _shapeLayers) {
         [_hudView.layer addSublayer:layer];
     }
