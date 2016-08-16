@@ -81,6 +81,9 @@ float Degrees2Radians(float degrees) { return degrees * M_PI / 180; }
         hudHeight = 90.0;
     }
     self.hudView.frame = CGRectMake((CGRectGetWidth(self.bounds)-hudWidth)*0.5, (CGRectGetHeight(self.bounds)-hudHeight)*0.5 , hudWidth, hudHeight);
+    self.hudView.layer.masksToBounds = YES;
+    self.hudView.layer.cornerRadius = 4;
+    
     
     if (_shape == CLProgressHUDShapeLinear) {
         self.stringLabel.frame = CGRectMake(xMargin, 50, CGRectGetWidth(_hudView.bounds)-xMargin*2, 16);
