@@ -200,7 +200,7 @@ float Degrees2Radians(float degrees) { return degrees * M_PI / 180; }
                    withObject:layer
                    afterDelay:interval
                       inModes:@[NSRunLoopCommonModes]];
-        interval += 0.2;
+        interval += 0.1;
     }
 }
 
@@ -213,7 +213,7 @@ float Degrees2Radians(float degrees) { return degrees * M_PI / 180; }
     fadeInAnimation.fromValue = [NSNumber numberWithFloat:1.0];
     fadeInAnimation.toValue = [NSNumber numberWithFloat:0.0];
     fadeInAnimation.autoreverses = YES;
-    fadeInAnimation.duration = 0.8f;
+    fadeInAnimation.duration = 0.5f;
     fadeInAnimation.repeatCount = MAXFLOAT;
     [layer addAnimation:fadeInAnimation forKey:nil];
 }
