@@ -95,9 +95,11 @@ float Degrees2Radians(float degrees) { return degrees * M_PI / 180; }
     
     //self.stringLabel.backgroundColor = [UIColor yellowColor];
     if (_shape == CLProgressHUDShapeLinear) {
+        
         self.stringLabel.frame = CGRectMake(xMargin, 50, CGRectGetWidth(_hudView.bounds)-xMargin*2, 18);
+        
     } else {
-        self.stringLabel.frame = CGRectMake(xMargin, CGRectGetHeight(_hudView.bounds)-30, CGRectGetWidth(_hudView.bounds)-xMargin*2 , 18);
+        self.stringLabel.frame = CGRectMake(xMargin, CGRectGetHeight(_hudView.bounds)-30 -5, CGRectGetWidth(_hudView.bounds)-xMargin*2 , 18);
     }
     
     
@@ -155,7 +157,7 @@ float Degrees2Radians(float degrees) { return degrees * M_PI / 180; }
             [shapesArray addObject:shapeLayer];
         }
     } else {
-        CGFloat centerX = CGRectGetWidth(_hudView.bounds)*0.5;
+        CGFloat centerX = CGRectGetWidth(_hudView.bounds)*0.5 -5;
         CGFloat centerY;
         if ([_stringLabel.text isEqualToString:@""]) {
             centerY = (CGRectGetHeight(_hudView.bounds)-_diameter)*0.5;
@@ -165,8 +167,8 @@ float Degrees2Radians(float degrees) { return degrees * M_PI / 180; }
         CGPoint center = CGPointMake(centerX, centerY);
         int i = 0;
         for (UIColor *color in colors) {
-            CGFloat x = center.x + _diameter*2*sin(Degrees2Radians((2-i)*45));
-            CGFloat y = center.y + _diameter*2*cos(Degrees2Radians((2-i)*45));
+            CGFloat x = center.x + _diameter*3*sin(Degrees2Radians((2-i)*45));
+            CGFloat y = center.y + _diameter*3*cos(Degrees2Radians((2-i)*45));
             CGRect rect = CGRectMake(x, y, self.diameter, self.diameter);
             CGMutablePathRef path = CGPathCreateMutable();
             CGPathAddEllipseInRect(path, NULL, rect);
